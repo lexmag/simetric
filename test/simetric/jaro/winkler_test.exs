@@ -33,5 +33,4 @@ defmodule Simetric.Jaro.WinklerTest do
       assert Simetric.Jaro.Winkler.compare(unquote_splicing(input)) == unquote(distance)
     end
   end
-
 end
