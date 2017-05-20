@@ -19,11 +19,11 @@ defp deps do
 end
 ```
 
-After you are done, run `mix deps.get` in your shell to fetch the dependencies.
+Then, run `mix deps.get` in your shell to fetch the new dependency.
 
 ## Usage
 
-__Jaro–Winkler distance:__
+__Jaro–Winkler:__
 ```elixir
 Simetric.Jaro.Winkler.compare("dwayne", "duane") # => 0.8400000000000001
 Simetric.Jaro.Winkler.compare("hardin", "martinez") # => 0.7222222222222222
@@ -38,4 +38,4 @@ Simetric.Levenshtein.compare("kitten", "sitting") # => 3
 
 ## License
 
-This software is licensed under [the ISC license](LICENSE).
+Simetric is released under [the ISC license](LICENSE).

@@ -14,8 +14,8 @@ defmodule Simetric.Mixfile do
   end
 
   defp description() do
-    "The library provides facilities to perform approximate string matching" <>
-    " and measurement of string similarity/distance."
+    "This library provides facilities to perform approximate string matching " <>
+    "and measurement of string similarity/distance."
   end
 
   defp package() do
