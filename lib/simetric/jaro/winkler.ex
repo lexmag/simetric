@@ -20,7 +20,7 @@ defmodule Simetric.Jaro.Winkler do
   @spec compare(String.t, String.t) :: float
 
   def compare(string1, string2) do
-    case Simetric.Jaro.compare(string1, string2) do
+    case String.jaro_distance(string1, string2) do
       0.0 ->
         0.0
       1.0 ->
