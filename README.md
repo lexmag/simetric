@@ -1,4 +1,7 @@
-# Simetric [![Build Status](https://travis-ci.org/lexmag/simetric.svg)](https://travis-ci.org/lexmag/simetric)
+# Simetric
+
+[![Build Status](https://travis-ci.org/lexmag/simetric.svg "Build Status")](https://travis-ci.org/lexmag/simetric)
+[![Hex Version](https://img.shields.io/hexpm/v/simetric.svg "Hex Version")](https://hex.pm/packages/simetric)
 
 Simetric provides facilities to perform approximate string matching and measurement of string similarity/distance.
 The library is focusing on speed and completeness.
