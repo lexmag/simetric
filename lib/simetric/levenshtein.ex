@@ -4,9 +4,9 @@ defmodule Simetric.Levenshtein do
   """
 
   @doc """
-  Returns an integer value representing the minimum number of
+  Returns an integer representing the minimum number of
   single-character edits (i.e. insertions, deletions or substitutions)
-  required to change `str1` into the `str2`.
+  required to change `string1` into the `string2`.
 
   ## Examples
 
@@ -15,14 +15,17 @@ defmodule Simetric.Levenshtein do
 
   """
   @spec compare(String.t, String.t) :: non_neg_integer
+  def compare(string1, string2)
 
-  def compare(str, str), do: 0
-  def compare(str, ""),  do: String.length(str)
-  def compare("", str),  do: String.length(str)
+  def compare(string, string), do: 0
 
-  def compare(str1, str2) do
-    chars1 = String.graphemes(str1)
-    chars2 = String.graphemes(str2)
+  def compare(string1, ""), do: String.length(string1)
+
+  def compare("", string2), do: String.length(string2)
+
+  def compare(string1, string2) do
+    chars1 = String.graphemes(string1)
+    chars2 = String.graphemes(string2)
     distance(chars1, chars2, length(chars2)..0, 1)
   end
 
@@ -35,13 +38,9 @@ defmodule Simetric.Levenshtein do
 
   defp proceed(_, [], _, acc, _), do: acc
 
-  defp proceed(char1, [char2 | rest], [head | distlist], acc, score) do
-    score = min(min(score + 1, hd(distlist) + 1), head + diff(char1, char2))
+  defp proceed(char1, [char2 | rest], [head | [prev | _] = distlist], acc, score) do
+    diff = if char1 == char2, do: 0, else: 1
+    score = min(min(score + 1, prev + 1), head + diff)
     proceed(char1, rest, distlist, [score | acc], score)
   end
-
-  defp diff(char, char),
-    do: 0
-  defp diff(_, _),
-    do: 1
 end

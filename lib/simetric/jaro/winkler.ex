@@ -6,8 +6,8 @@ defmodule Simetric.Jaro.Winkler do
   """
 
   @doc """
-  Returns a float value between 0 (equates to no similarity) and 1 (is an exact match)
-  representing a distance between `str1` and `str2`.
+  Returns a floating-point number between 0 (equates to no similarity) and 1 (is an exact match)
+  representing a distance between `string1` and `string2`.
 
   ## Examples
 
@@ -17,33 +17,33 @@ defmodule Simetric.Jaro.Winkler do
       0.0
 
   """
-  @spec compare(String.t, String.t) :: 0..1
+  @spec compare(String.t, String.t) :: float
 
-  def compare(str1, str2) do
-    case Simetric.Jaro.compare(str1, str2) do
-      0.0 -> 0.0
-      1.0 -> 1.0
+  def compare(string1, string2) do
+    case Simetric.Jaro.compare(string1, string2) do
+      0.0 ->
+        0.0
+      1.0 ->
+        1.0
       dist ->
-        dist + (prefix(str1, str2) * 0.1 * (1 - dist))
+        common_prefix_length = common_prefix_length(string1, string2, 0, 4)
+        dist + (common_prefix_length * 0.1 * (1 - dist))
     end
   end
 
-  defp prefix(str1, str2) do
-    prefix(str1, str2, 0, 4)
-  end
+  defp common_prefix_length(_string1, _string2, count, 0), do: count
 
-  defp prefix(_str1, _str2, count, 0), do: count
-  defp prefix(_str, "", count, _lim),  do: count
-  defp prefix("", _str, count, _lim),  do: count
+  defp common_prefix_length(_string1, "", count, _limit), do: count
 
-  defp prefix(str1, str2, count, lim) do
-    {char, rest1} = String.next_grapheme(str1)
+  defp common_prefix_length("", _string2, count, _limit), do: count
 
-    case String.next_grapheme(str2) do
+  defp common_prefix_length(string1, string2, count, limit) do
+    {char, rest1} = String.next_grapheme(string1)
+    case String.next_grapheme(string2) do
       {^char, rest2} ->
-        prefix(rest1, rest2, count + 1, lim - 1)
-
-      {_, _} -> count
+        common_prefix_length(rest1, rest2, count + 1, limit - 1)
+      {_char, _rest} ->
+        count
     end
   end
 end
