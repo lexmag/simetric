@@ -18,7 +18,7 @@ Add Simetric as a dependency to your `mix.exs` file:
 
 ```elixir
 defp deps do
-  [{:simetric, "~> 0.1.0"}]
+  [{:simetric, "~> 0.2.0"}]
 end
 ```
 
