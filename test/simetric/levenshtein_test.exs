@@ -33,9 +33,33 @@ defmodule Simetric.LevenshteinTest do
     ["distance", "difference"] => 5
   }
 
+  cases_custom = %{
+    # empty strings
+    ["", ""] => 0,
+    ["", "ab"] => 2,
+    ["abc", ""] => 3,
+    # equal strings
+    ["abc", "abc"] => 0,
+    # inserts only
+    ["ac", "abc"] => 1,
+    # deletions only
+    ["xabxcdxxefxgx", "abcdefg"] => 6,
+    # substitutions only
+    ["a", "b"] => 2,
+    ["xabxcdxxefxgx", "1ab2cd34ef5g6"] => 12,
+    # mixed operations
+    ["levenshtein", "frankenstein"] => 9
+  }
+
   for {input, distance} <- cases do
     test "compare #{inspect input}" do
       assert Simetric.Levenshtein.compare(unquote_splicing(input)) == unquote(distance)
+    end
+  end
+
+  for {input, distance} <- cases_custom do
+    test "compare custom #{inspect input} with diff_distance = 2" do
+      assert Simetric.Levenshtein.compare(unquote_splicing(input), 2) == unquote(distance)
     end
   end
 end
