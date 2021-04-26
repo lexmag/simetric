@@ -1,7 +1,11 @@
 # Simetric
 
 [![Build Status](https://travis-ci.org/lexmag/simetric.svg "Build Status")](https://travis-ci.org/lexmag/simetric)
-[![Hex Version](https://img.shields.io/hexpm/v/simetric.svg "Hex Version")](https://hex.pm/packages/simetric)
+[![Module Version](https://img.shields.io/hexpm/v/simetric.svg)](https://hex.pm/packages/simetric)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/simetric/)
+[![Total Download](https://img.shields.io/hexpm/dt/simetric.svg)](https://hex.pm/packages/simetric)
+[![License](https://img.shields.io/hexpm/l/simetric.svg)](https://github.com/lexmag/simetric/blob/master/LICENSE)
+[![Last Updated](https://img.shields.io/github/last-commit/lexmag/simetric.svg)](https://github.com/lexmag/simetric/commits/master)
 
 Simetric provides facilities to perform approximate string matching and measurement of string similarity/distance.
 The library is focusing on speed and completeness.
@@ -14,11 +18,13 @@ The library is focusing on speed and completeness.
 
 ## Installation
 
-Add Simetric as a dependency to your `mix.exs` file:
+Add `:simetric` as a dependency to your `mix.exs` file:
 
 ```elixir
 defp deps do
-  [{:simetric, "~> 0.2.0"}]
+  [
+    {:simetric, "~> 0.2.0"}
+  ]
 end
 ```
 
@@ -39,6 +45,8 @@ Simetric.Levenshtein.compare("gumbo", "gambol") # => 2
 Simetric.Levenshtein.compare("kitten", "sitting") # => 3
 ```
 
-## License
+## Copyright and License
 
-Simetric is released under [the ISC license](LICENSE).
+Copyright (c) 2014, Aleksei Magusev
+
+Simetric is released under [the ISC license](./LICENSE.md).
